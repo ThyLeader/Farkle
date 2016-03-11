@@ -7,6 +7,7 @@ import (
 		"math/rand"
 		"time"
         "strings"
+        "sort"
 		//"net/http"
 )
 
@@ -38,10 +39,11 @@ func singlePlayer() {
         d.Println(mode)
     }
     if strings.ToLower(mode) == "rules" {
-        printRules()
         printScoring()
+        printRules()
     }
     dice, amt := rollDice(6)
+    sort.Ints(dice)
     d.Println("\nYou rolled", amt, "dice")
     d.Println(dice)
 }

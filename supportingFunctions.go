@@ -36,7 +36,7 @@ func printRules() {
     
     for _, e := range ruleArray {
         d.Println(e)
-        time.Sleep(1000 * time.Millisecond)
+        time.Sleep(150 * time.Millisecond)
     }
     d.Println("\nType anything when you have finished reading the rules to continue")
     if _, err := fmt.Scanln(&isDone); err != nil {
