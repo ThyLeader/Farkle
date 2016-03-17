@@ -3,7 +3,7 @@ package main
 import (
         "fmt"
 	    "log" 
-        "github.com/faith/color"
+        "github.com/fatih/color"
 		"math/rand"
 		"time"
         "strings"
@@ -21,7 +21,7 @@ func main() {
 
 func rollDice(len int) ([]int, int) {
     toReturn := make([]int, len) 
-    for i, _ := range toReturn {
+    for i := range toReturn {
         r := rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
         d := r.Intn(6) + 1
         toReturn[i] = d

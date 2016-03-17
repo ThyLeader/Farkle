@@ -3,7 +3,7 @@ package main
 import (
         "fmt"
 	    "log" 
-        "github.com/faith/color"
+        "github.com/fatih/color"
 		"time"
 		//"net/http"
 )
