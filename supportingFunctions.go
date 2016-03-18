@@ -5,6 +5,7 @@ import (
 	    "log" 
         "github.com/fatih/color"
 		"time"
+        "math/rand"
 		//"net/http"
 )
 
@@ -58,4 +59,38 @@ func printScoring() {
 |    Three 5s      |  500    | 
 |    Three 6s      |  600    |
 ==============================`)
+}
+
+func rollDice(len int) ([]int, int) {
+    toReturn := make([]int, len) 
+    for i := range toReturn {
+        r := rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
+        d := r.Intn(6) + 1
+        toReturn[i] = d
+    }
+    return toReturn, len
+}
+
+func addAmt(amt int, p int) {
+    fmt.Println("Adding", amt, "points to player", p)
+}
+
+func (c *KeepScore) addPoints(dice []int, player bool) {
+    s1, s2, s3, s4, s5, s6 := 0, 0, 0, 0, 0, 0
+    
+    for _, e := range dice {
+        switch e {
+            default: fmt.Println("KEK")
+            case 1: s1++
+            case 2: s2++
+            case 3: s3++
+            case 4: s4++
+            case 5: s5++
+            case 6: s6++
+        }
+    }
+}
+
+func (c *KeepScore) printScore() {
+    fmt.Println(c.p1, c.p2)
 }

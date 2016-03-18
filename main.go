@@ -4,32 +4,26 @@ import (
         "fmt"
 	    "log" 
         "github.com/fatih/color"
-		"math/rand"
-		"time"
+		//"math/rand"
+		//"time"
         "strings"
         "sort"
-		//"net/http"
 )
 
+type KeepScore struct {
+    p1 int
+    p2 int
+}
+
 func main() {
-    //d := color.New(color.FgRed, color.Bold)
     mode := printWelcome()
     if mode == 1{
         singlePlayer()
     }
 }
 
-func rollDice(len int) ([]int, int) {
-    toReturn := make([]int, len) 
-    for i := range toReturn {
-        r := rand.New(rand.NewSource(time.Now().UTC().UnixNano()))
-        d := r.Intn(6) + 1
-        toReturn[i] = d
-    }
-    return toReturn, len
-}
-
 func singlePlayer() {
+    c := new(KeepScore)
     var mode string
     d := color.New(color.FgRed, color.Bold)
     d.Println("Singleplayer initiated")
@@ -46,4 +40,6 @@ func singlePlayer() {
     sort.Ints(dice)
     d.Println("\nYou rolled", amt, "dice")
     d.Println(dice)
+    c.addPoints(dice, true)
+    c.printScore()
 }
