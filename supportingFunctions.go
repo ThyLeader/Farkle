@@ -75,9 +75,30 @@ func addAmt(amt int, p int) {
     fmt.Println("Adding", amt, "points to player", p)
 }
 
-func (c *KeepScore) addPoints(dice []int, player bool) {
+func (c *KeepScore) givePoints(player int, points int, i int, e int) {
+    switch player {
+        default: fmt.Println("KEK")
+        case 1:
+            c.p1 = c.p1 + points
+            fmt.Println("Added", points, "points")
+            fmt.Println("You scored", i, e)
+            
+        case 2:
+            c.p2 = c.p2 + points
+        case 3:
+            c.p3 = c.p3 + points
+        case 4:
+            c.p4 = c.p4 + points
+        case 5:
+            c.p5 = c.p5 + points
+        case 6:
+            c.p6 = c.p6 + points
+    }
+}
+
+func (c *KeepScore) calcPoints(dice []int, player bool) {
     s1, s2, s3, s4, s5, s6 := 0, 0, 0, 0, 0, 0
-    
+    before := c.p1
     for _, e := range dice {
         switch e {
             default: fmt.Println("KEK")
@@ -88,9 +109,103 @@ func (c *KeepScore) addPoints(dice []int, player bool) {
             case 5: s5++
             case 6: s6++
         }
+        //fmt.Println(s1, s2, s3, s4, s5, s6)
     }
+    num := []int{s1, s2, s3, s4, s5, s6}
+    for i, e := range num {
+        i++
+        if i == 1 {
+            switch e {
+                default: fmt.Println("No points scored")
+                case 1:
+                    c.givePoints(1, 100, i, e)
+                case 2:
+                    c.givePoints(1, 200, i, e)
+                case 3:
+                    c.givePoints(1, 1000, i, e)
+                case 4:
+                    c.givePoints(1, 2000, i, e)
+                case 5:
+                    c.givePoints(1, 3000, i, e)
+                case 6:
+                    c.givePoints(1, 4000, i, e)
+            }
+        }
+        if i == 2 {
+            switch e {
+                default: fmt.Println("No points scored")
+                case 3:
+                    c.givePoints(1, 200, i, e)
+                case 4:
+                    c.givePoints(1, 400, i, e)
+                case 5:
+                    c.givePoints(1, 600, i, e)
+                case 6:
+                    c.givePoints(1, 800, i, e)
+            }
+        }
+        if i == 3 {
+            switch e {
+                default: fmt.Println("No points scored")
+                case 3:
+                    c.givePoints(1, 300, i, e)
+                case 4:
+                    c.givePoints(1, 600, i, e)
+                case 5:
+                    c.givePoints(1, 900, i, e)
+                case 6:
+                    c.givePoints(1, 1200, i, e)
+            }
+        }
+        if i == 4 {
+            switch e {
+                default: fmt.Println("No points scored")
+                case 3:
+                    c.givePoints(1, 400, i, e)
+                case 4:
+                    c.givePoints(1, 800, i, e)
+                case 5:
+                    c.givePoints(1, 1200, i, e)
+                case 6:
+                    c.givePoints(1, 1600, i, e)
+            }
+        }
+        if i == 5 {
+            switch e {
+                default: fmt.Println("No points scored")
+                case 1:
+                    c.givePoints(1, 50, i, e)
+                case 2:
+                    c.givePoints(1, 100, i, e)
+                case 3:
+                    c.givePoints(1, 500, i, e)
+                case 4:
+                    c.givePoints(1, 1000, i, e)
+                case 5:
+                    c.givePoints(1, 1500, i, e)
+                case 6:
+                    c.givePoints(1, 2000, i, e)
+            }
+        }
+        if i == 6 {
+            switch e {
+                default: fmt.Println("No points scored")
+                case 3:
+                    c.givePoints(1, 600, i, e)
+                case 4:
+                    c.givePoints(1, 1200, i, e)
+                case 5:
+                    c.givePoints(1, 1800, i, e)
+                case 6:
+                    c.givePoints(1, 2400, i, e)
+            }
+        }
+    }
+    c.turn++
+    diff := c.p1 - before
+    fmt.Println("You scored", diff, "points on round", c.turn)
 }
 
 func (c *KeepScore) printScore() {
-    fmt.Println(c.p1, c.p2)
+    fmt.Println(c.p1/*, c.p2*/, c.turn)
 }
